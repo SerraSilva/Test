@@ -25,14 +25,14 @@ public class RebateService : IRebateService
     }
     public CalculateRebateResult Calculate(CalculateRebateRequest request)
     {
-        Rebate rebate = _rebateDataStore.GetRebate(request.RebateIdentifier);
-        Product product = _productDataStore.GetProduct(request.ProductIdentifier);
+        Rebate rebate = GetRebate(request.RebateIdentifier);
+        Product product = GetProduct(request.ProductIdentifier);
 
         var result = new CalculateRebateResult();
 
         var rebateAmount = 0m;
 
-        if (rebate == null || product == null)
+        if (IsRebateInitialized(rebate) && IsProductInitialized(product))
         {
             result.Success = false;
             return result;
@@ -69,9 +69,38 @@ public class RebateService : IRebateService
 
         if (result.Success)
         {
-            _rebateDataStore.StoreCalculationResult(rebate, rebateAmount);
+            StoreRebate(rebate, rebateAmount);
         }
 
         return result;
+    }
+
+    public Rebate GetRebate(string rebateIdentifier)
+    {
+        Rebate rebate = _rebateDataStore.GetRebate(rebateIdentifier);
+        return rebate;
+    }
+
+    public Product GetProduct(string productIdentifier)
+    {
+        Product product = _productDataStore.GetProduct(productIdentifier);
+        return product;
+    }
+
+    public void StoreRebate(Rebate rebate, decimal rebateAmount)
+    {
+        _rebateDataStore.StoreCalculationResult(rebate, rebateAmount);
+    }
+
+    public bool IsRebateInitialized(Rebate rebate)
+    {
+        if (rebate == null) { return false; }
+        return true;
+    }
+
+    public bool IsProductInitialized(Product product)
+    {
+        if (product == null) { return false; }
+        return true;
     }
 }

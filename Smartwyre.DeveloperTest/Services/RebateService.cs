@@ -32,11 +32,8 @@ public class RebateService : IRebateService
 
         var rebateAmount = 0m;
 
-        if (IsRebateInitialized(rebate) && IsProductInitialized(product))
-        {
-            result.Success = false;
-            return result;
-        }
+        result.Success = IsRebateInitialized(rebate) && IsProductInitialized(product);
+        if (!result.Success) { return result; }
 
         switch (rebate.Incentive)
         {

@@ -1,4 +1,6 @@
-﻿namespace Smartwyre.DeveloperTest.Types;
+﻿using Smartwyre.DeveloperTest.Types.IncentiveTypes.Support;
+
+namespace Smartwyre.DeveloperTest.Types;
 
 public class Product
 {

@@ -5,6 +5,8 @@ using Smartwyre.DeveloperTest.Data.Interfaces;
 using Smartwyre.DeveloperTest.Services;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
+using Smartwyre.DeveloperTest.Types.IncentiveTypes.Support;
+using Smartwyre.DeveloperTest.Types.Interfaces;
 
 namespace Smartwyre.DeveloperTest.Runner;
 
@@ -15,6 +17,7 @@ class Program
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IRebateDataStore, RebateDataStore>()
             .AddSingleton<IProductDataStore, ProductDataStore>()
+            .AddSingleton<IIncentiveTypeFactory, IncentiveTypeFactory>()
             .AddSingleton<IRebateService, RebateService>()
             .BuildServiceProvider();
 

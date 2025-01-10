@@ -6,7 +6,9 @@ namespace Smartwyre.DeveloperTest.Types.IncentiveTypes
     public class FixedRateRebate : IIncentiveType
     {
         private decimal _rebateAmount = 0m;
-        
+
+        public IncentiveType selectedIncentiveType => IncentiveType.FixedRateRebate;
+
         public FixedRateRebate() { }
 
         public bool IsValidRequest(Product product, Rebate rebate, decimal volume)

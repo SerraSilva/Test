@@ -35,6 +35,8 @@ public class RebateService : IRebateService
         result.Success = IsRebateInitialized(rebate) && IsProductInitialized(product);
         if (!result.Success) { return result; }
 
+
+
         switch (rebate.Incentive)
         {
             case IncentiveType.AmountPerUom:

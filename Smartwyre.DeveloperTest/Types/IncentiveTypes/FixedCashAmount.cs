@@ -5,6 +5,8 @@ namespace Smartwyre.DeveloperTest.Types.IncentiveTypes
 {
     public class FixedCashAmount : IIncentiveType
     {
+        public IncentiveType selectedIncentiveType => IncentiveType.FixedCashAmount;
+
         public bool IsValidRequest(Product product, Rebate rebate)
         {
             if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.FixedCashAmount))

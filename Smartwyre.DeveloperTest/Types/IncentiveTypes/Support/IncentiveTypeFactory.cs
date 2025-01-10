@@ -9,21 +9,14 @@ namespace Smartwyre.DeveloperTest.Types.IncentiveTypes.Support
 {
     public class IncentiveTypeFactory : IIncentiveTypeFactory
     {
+        public IEnumerable<IIncentiveType> _incentiveType;
+        public IncentiveTypeFactory(IEnumerable<IIncentiveType> incentiveTypes) 
+        {  
+            _incentiveType = incentiveTypes;
+        }
         public IIncentiveType Create(IncentiveType incentiveType)
         {
-            switch(incentiveType)
-            {
-                case IncentiveType.AmountPerUom:
-                    AmountPerUom amountPerUom = new AmountPerUom();
-                    return amountPerUom;
-                case IncentiveType.FixedCashAmount:
-                    FixedCashAmount fixedCashAmount = new FixedCashAmount();
-                    return fixedCashAmount;
-                case IncentiveType.FixedRateRebate:
-                    FixedRateRebate fixedRateRebate = new FixedRateRebate();
-                    return fixedRateRebate;
-            }
-            return null;
+            return _incentiveType.Where(x => x.selectedIncentiveType == incentiveType).FirstOrDefault();
         }
     }
 }

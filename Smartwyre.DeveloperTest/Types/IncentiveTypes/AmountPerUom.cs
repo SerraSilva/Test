@@ -6,6 +6,9 @@ namespace Smartwyre.DeveloperTest.Types.IncentiveTypes
     public class AmountPerUom : IIncentiveType
     {
         private decimal _rebateAmount = 0m;
+
+        public IncentiveType selectedIncentiveType => IncentiveType.AmountPerUom;
+
         public bool IsValidRequest(Product product, Rebate rebate, decimal volume)
         {
             if (!product.SupportedIncentives.HasFlag(SupportedIncentiveType.AmountPerUom))

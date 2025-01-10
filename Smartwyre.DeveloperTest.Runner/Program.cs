@@ -5,6 +5,7 @@ using Smartwyre.DeveloperTest.Data.Interfaces;
 using Smartwyre.DeveloperTest.Services;
 using Smartwyre.DeveloperTest.Services.Interfaces;
 using Smartwyre.DeveloperTest.Types;
+using Smartwyre.DeveloperTest.Types.IncentiveTypes;
 using Smartwyre.DeveloperTest.Types.IncentiveTypes.Support;
 using Smartwyre.DeveloperTest.Types.Interfaces;
 
@@ -18,6 +19,9 @@ class Program
             .AddSingleton<IRebateDataStore, RebateDataStore>()
             .AddSingleton<IProductDataStore, ProductDataStore>()
             .AddSingleton<IIncentiveTypeFactory, IncentiveTypeFactory>()
+            .AddSingleton<IIncentiveType, AmountPerUom>()
+            .AddSingleton<IIncentiveType, FixedCashAmount>()
+            .AddSingleton<IIncentiveType, FixedRateRebate>()
             .AddSingleton<IRebateService, RebateService>()
             .BuildServiceProvider();
 
